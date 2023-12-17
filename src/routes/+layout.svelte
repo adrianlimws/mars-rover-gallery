@@ -1,5 +1,10 @@
 <script>
 	import '../app.css';
+	import SideNavBar from '../components/SideNavBar.svelte';
 </script>
 
-<slot />
+<div class="flex flex-row">
+	<SideNavBar />
+
+	<slot />
+</div>
