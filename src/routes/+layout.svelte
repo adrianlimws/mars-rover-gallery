@@ -1,6 +1,6 @@
 <script>
 	import '../app.css';
-	import SideNavBar from '../components/SideNavBar.svelte';
+	import SideNavBar from '../lib/components/SideNavBar.svelte';
 </script>
 
 <div class="flex flex-row">
