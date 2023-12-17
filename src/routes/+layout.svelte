@@ -6,5 +6,7 @@
 <div class="flex flex-row">
 	<SideNavBar />
 
-	<slot />
+	<div class="grid grid-cols-4 gap-4">
+		<slot />
+	</div>
 </div>
