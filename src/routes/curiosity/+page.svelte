@@ -47,29 +47,48 @@
 	});
 </script>
 
-<h1 class="text-white">Sol: {sol}</h1>
-<div class="border-t-2 border-black">
-	<button
-		class="btn"
-		on:click={() => {
-			sol--;
-			fetchData();
-		}}>Previous Sol</button
-	>
 
-	<button
-		class="btn"
-		on:click={() => {
-			sol++;
-			fetchData();
-		}}>Next Sol</button
-	>
+<div class="bg-gray-800 p-4">
+	<div class="flex items-center justify-between">
+		<div>
+			<h1 class="text-white">Sol: {sol}</h1>
+		</div>
+		<div class="flex space-x-4">
+			<button
+				class="btn"
+				on:click={() => {
+					sol--;
+					fetchData();
+				}}
+			>
+				Previous Sol
+			</button>
+
+			<button
+				class="btn"
+				on:click={() => {
+					sol++;
+					fetchData();
+				}}
+			>
+				Next Sol
+			</button>
+		</div>
+	</div>
 </div>
-<div class="grid grid-cols-4 gap-4">
-	{#each photos as photo (photo.id)}
-		<div class="card bg-base-100 shadow-xl">
+<div class="grid grid-cols-4 gap-4 p-4">
+	{#each photos as photo}
+		<img
+			class="w-full hover:"
+			src={photo.img_src}
+			alt={`Image taken by ${photo.rover.name} on SOL ${photo.sol}`}
+		/>
+	{/each}
+</div>
+
+<!-- <div class="card bg-base-100 shadow-xl">
 			<figure>
-				<img src={photo.img_src} alt="Shoes" />
+				<img src={photo.img_src} alt="Shoes" class="w-full" />
 			</figure>
 			<div class="card-body">
 				<h2 class="card-title">
@@ -81,6 +100,4 @@
 					<div class="badge badge-outline">SOL {photo.sol}</div>
 				</div>
 			</div>
-		</div>
-	{/each}
-</div>
+		</div> -->
