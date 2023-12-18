@@ -1,24 +1,5 @@
-<!-- 
-{#each data.item.photos as photo (photo.id)}
-	<div class="card bg-base-100 shadow-xl">
-		<figure>
-			<img src={photo.img_src} alt="Shoes" />
-		</figure>
-		<div class="card-body">
-			<h2 class="card-title">
-				<div class="badge badge-secondary">ID: {photo.id}</div>
-			</h2>
-			<p>Taken on {photo.earth_date}</p>
-			<div class="card-actions justify-end">
-				<div class="badge badge-outline">{photo.rover.name}</div>
-				<div class="badge badge-outline">SOL {photo.sol}</div>
-			</div>
-		</div>
-	</div>
-{/each} -->
-
 <script>
-	import { onMount, afterUpdate, onDestroy } from 'svelte';
+	import { onMount } from 'svelte';
 
 	export let sol = 1;
 	let photos = [];
@@ -46,7 +27,6 @@
 		fetchData();
 	});
 </script>
-
 
 <div class="bg-gray-800 p-4">
 	<div class="flex items-center justify-between">
@@ -76,28 +56,30 @@
 		</div>
 	</div>
 </div>
-<div class="grid grid-cols-4 gap-4 p-4">
+<div class="grid grid-cols-4 gap-2 p-2">
 	{#each photos as photo}
-		<img
-			class="w-full hover:"
-			src={photo.img_src}
-			alt={`Image taken by ${photo.rover.name} on SOL ${photo.sol}`}
-		/>
+		<figure class="relative max-w-sm cursor-pointer">
+			<a href="#">
+				<img
+					class="rounded-lg w-full"
+					src={photo.img_src}
+					alt={`Image taken by ${photo.rover.name} on SOL ${photo.sol}`}
+				/>
+			</a>
+			<figcaption class="absolute px-4 text-lg text-white bottom-6">
+				<span
+					class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"
+					>{photo.earth_date}</span
+				>
+				<span
+					class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10"
+					>{photo.rover.name}</span
+				>
+				<span
+					class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20"
+					>SOL {photo.sol}</span
+				>
+			</figcaption>
+		</figure>
 	{/each}
 </div>
-
-<!-- <div class="card bg-base-100 shadow-xl">
-			<figure>
-				<img src={photo.img_src} alt="Shoes" class="w-full" />
-			</figure>
-			<div class="card-body">
-				<h2 class="card-title">
-					<div class="badge badge-secondary">ID: {photo.id}</div>
-				</h2>
-				<p>Taken on {photo.earth_date}</p>
-				<div class="card-actions justify-end">
-					<div class="badge badge-outline">{photo.rover.name}</div>
-					<div class="badge badge-outline">SOL {photo.sol}</div>
-				</div>
-			</div>
-		</div> -->

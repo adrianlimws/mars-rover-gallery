@@ -3,8 +3,8 @@
 </script>
 
 <div class="hero min-h-screen">
-	<div class="video-docker absolute top-0 h-full overflow-hidden">
-		<video class="min-h-full object-cover" src={marsVideo} type="video/mp4" autoplay muted loop
+	<div class="absolute w-full h-full">
+		<video class="w-full h-full object-cover" src={marsVideo} type="video/mp4" autoplay muted loop
 		></video>
 	</div>
 	<div class="hero-overlay bg-opacity-100"></div>
