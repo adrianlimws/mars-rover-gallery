@@ -1,7 +1,7 @@
 <script>
 	import '../app.css';
-	import SideNavBar from '$lib/components/SideNavBar.svelte';
+	import MainNavBar from '$lib/components/MainNavBar.svelte';
 </script>
 
-<SideNavBar />
+<MainNavBar />
 <slot />

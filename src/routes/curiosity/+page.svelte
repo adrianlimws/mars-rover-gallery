@@ -195,7 +195,7 @@
 			<figure class="relative max-w-sm cursor-pointer rounded">
 				<a href={photo.img_src}>
 					<img
-						class="rounded-lg w-full hover:scale-105 transition duration-500 cursor-pointer shadow-md hover:shadow-white"
+						class="rounded-lg w-full hover:scale-105 transition duration-500 cursor-pointer"
 						src={photo.img_src}
 						alt={`Image taken by ${photo.rover.name} on SOL ${photo.sol}`}
 					/>

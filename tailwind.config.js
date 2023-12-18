@@ -4,5 +4,16 @@ export default {
 	theme: {
 		extend: {}
 	},
-	plugins: [require('daisyui')]
+	plugins: [
+		require('daisyui'),
+		[
+			'fslightbox-svelte',
+			{
+				// Your fslightbox-svelte options go here
+				// For example:
+				loop: true,
+				autoplay: true
+			}
+		]
+	]
 };
