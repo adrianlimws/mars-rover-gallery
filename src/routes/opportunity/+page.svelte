@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
-
+	import { LightboxGallery, GalleryImage, GalleryThumbnail } from 'svelte-lightbox';
 	// Create a writable store for sol
 	const solStore = writable(1);
 
