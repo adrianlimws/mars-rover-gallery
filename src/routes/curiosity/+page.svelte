@@ -1,8 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
-	import HeroNotFound from '$lib/components/HeroNotFound.svelte';
-	import CuriosityGallery from '$lib/components/CuriosityGallery.svelte';
+
 	import { Lightbox, LightboxGallery, GalleryImage, GalleryThumbnail } from 'svelte-lightbox';
 
 	// Create a writable store for sol
@@ -53,7 +52,7 @@
 	<div class="navbar-start">
 		{#if photos.length > 0}
 			<span
-				class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400"
+				class="bg-purple-100 text-purple-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-purple-700 dark:text-purple-400 border border-purple-400"
 			>
 				{photos[0].rover.name}
 			</span>
@@ -181,7 +180,7 @@
 				{photos[0].rover.launch_date}
 			</span>
 			<span
-				class="bg-orange-100 text-orange-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-orange-400 border border-orange-400"
+				class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"
 			>
 				Landed:
 				{photos[0].rover.landing_date}
@@ -197,17 +196,33 @@
 	</div>
 {:else}
 	<div class="grid xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 gap-4 m-6">
-		{#each photos as photo}
-			<Lightbox
-				description={`Image taken by ${photo.rover.name} on SOL ${photo.sol}, Earth date: ${photo.earth_date}`}
-			>
-				<img
-					class="rounded-lg w-full hover:scale-105 transition duration-500 cursor-pointer"
-					src={photo.img_src}
-					alt={`Image taken by ${photo.rover.name} on SOL ${photo.sol}, Earth date: ${photo.earth_date}`}
-				/>
-			</Lightbox>
-			<!-- <figure class="relative max-w-sm cursor-pointer rounded">
+		{#if photos.length > 0}
+			<LightboxGallery>
+				<svelte:fragment slot="thumbnail">
+					{#each photos as photo}
+						<GalleryThumbnail enableImageExpand="true">
+							<img
+								class="rounded-lg min-w-full"
+								src={photo.img_src}
+								alt={`Image taken by ${photo.rover.name} on SOL ${photo.sol}, Earth date: ${photo.earth_date}`}
+							/>
+						</GalleryThumbnail>
+					{/each}
+				</svelte:fragment>
+
+				{#each photos as photo}
+					<GalleryImage>
+						<img
+							class="min-w-full"
+							src={photo.img_src}
+							alt={`Image taken by ${photo.rover.name} on SOL ${photo.sol}, Earth date: ${photo.earth_date}`}
+						/>
+					</GalleryImage>
+				{/each}
+			</LightboxGallery>
+		{/if}
+
+		<!-- <figure class="relative max-w-sm cursor-pointer rounded">
 				<a href={photo.img_src}>
 					<img
 						class="rounded-lg w-full hover:scale-105 transition duration-500 cursor-pointer"
@@ -226,6 +241,5 @@
 					>
 				</figcaption>
 			</figure> -->
-		{/each}
 	</div>
 {/if}
