@@ -31,7 +31,7 @@
 				</li>
 			</ul>
 		</div>
-		<a href="/" class="btn btn-ghost text-xl hover:text-red-400">Mars Rover Gallery</a>
+		<a href="/" class="btn btn-ghost text-xl hover:text-red-400 uppercase">Mars Rovers Gallery</a>
 	</div>
 	<div class="navbar-center hidden lg:flex">
 		<ul class="menu menu-horizontal px-1">

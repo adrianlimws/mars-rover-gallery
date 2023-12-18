@@ -1,7 +1,9 @@
 <script>
+	import HeroNotFound from '$lib/components/HeroNotFound.svelte';
+	import CuriosityGallery from '$lib/components/CuriosityGallery.svelte';
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
-	import { LightboxGallery, GalleryImage, GalleryThumbnail } from 'svelte-lightbox';
+
 	// Create a writable store for sol
 	const solStore = writable(1);
 
@@ -25,15 +27,10 @@
 		}
 	}
 
-	// Subscribe to the sol store and fetch data when it changes
-	$: {
-		sol = $solStore;
-		fetchData();
-	}
-
 	// Fetch data when the component is mounted
 	onMount(() => {
 		console.log('Component mounted with sol:', sol);
+		fetchData();
 	});
 
 	// Function to handle input changes and update sol
@@ -136,40 +133,13 @@
 </div>
 
 {#if photos.length === 0}
-	<div class="min-h-screen text-center p-6 text-white">
-		<h1 class="text-5xl font-bold">The rover did not take any images during SOL {sol}.</h1>
-		<p class="py-4 text-4xl">Please try another SOL number.</p>
-	</div>
+	<HeroNotFound />
 {:else}
 	<div class="grid place-content-center xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-2">
 		{#each photos as photo}
-			<figure class="relative max-w-sm cursor-pointer">
-				<a href={photo.img_src}>
-					<img
-						class="rounded-lg w-full"
-						src={photo.img_src}
-						alt={`Image taken by ${photo.rover.name} on SOL ${photo.sol}`}
-					/>
-				</a>
-				<figcaption class="absolute px-2 text-lg text-white bottom-4">
-					<span
-						class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-blue-600"
-						>{photo.earth_date}</span
-					>
-					<span
-						class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-red-700"
-						>{photo.rover.name}</span
-					>
-					<span
-						class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800"
-						>SOL {photo.sol}</span
-					>
-					<span
-						class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-purple-800"
-						>CAM: {photo.camera.name}</span
-					>
-				</figcaption>
-			</figure>
+			<Lightbox description="Simple lightbox">
+				<img src={photo.img_src} alt="Simple lightbox" />
+			</Lightbox>
 		{/each}
 	</div>
 {/if}
