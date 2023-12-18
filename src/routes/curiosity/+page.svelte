@@ -1,6 +1,9 @@
 <script>
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
+	import HeroNotFound from '$lib/components/HeroNotFound.svelte';
+	import CuriosityGallery from '$lib/components/CuriosityGallery.svelte';
+	import { Lightbox, LightboxGallery, GalleryImage, GalleryThumbnail } from 'svelte-lightbox';
 
 	// Create a writable store for sol
 	const solStore = writable(1);
@@ -50,19 +53,21 @@
 	<div class="navbar-start">
 		{#if photos.length > 0}
 			<span
-				class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400"
+				class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400"
 			>
 				{photos[0].rover.name}
 			</span>
 
 			<span
-				class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400"
+				class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-700 dark:text-green-400 border border-green-400"
 			>
 				Status:
-				{photos[0].rover.status}
+				<span class="uppercase">
+					{photos[0].rover.status}
+				</span>
 			</span>
 			<span
-				class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400"
+				class="bg-orange-100 text-orange-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-orange-400 border border-orange-400"
 			>
 				Last Contact:
 				{new Date(photos[0].rover.max_date).toLocaleDateString('en-US', {
@@ -75,7 +80,7 @@
 			<span
 				class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"
 			>
-				# of Images:
+				Image Count:
 				{photos[0].rover.total_photos}
 			</span>
 		{/if}
@@ -115,7 +120,7 @@
 				class="bg-gray-50 border-x-0 border-gray-300 h-11 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 				bind:value={sol}
 				on:input={handleInputChange}
-				required
+				requiblue
 			/>
 			<div
 				class="absolute bottom-1 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse"
@@ -176,7 +181,7 @@
 				{photos[0].rover.launch_date}
 			</span>
 			<span
-				class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400"
+				class="bg-orange-100 text-orange-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-orange-400 border border-orange-400"
 			>
 				Landed:
 				{photos[0].rover.landing_date}
@@ -191,8 +196,17 @@
 		<p class="py-4 text-4xl">Please try another SOL number.</p>
 	</div>
 {:else}
-	<div class="grid place-content-center xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 gap-4 m-6">
+	<div class="grid xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 gap-4 m-6">
 		{#each photos as photo}
+			<Lightbox
+				description={`Image taken by ${photo.rover.name} on SOL ${photo.sol}, Earth date: ${photo.earth_date}`}
+			>
+				<img
+					class="rounded-lg w-full hover:scale-105 transition duration-500 cursor-pointer"
+					src={photo.img_src}
+					alt={`Image taken by ${photo.rover.name} on SOL ${photo.sol}, Earth date: ${photo.earth_date}`}
+				/>
+			</Lightbox>
 			<!-- <figure class="relative max-w-sm cursor-pointer rounded">
 				<a href={photo.img_src}>
 					<img
