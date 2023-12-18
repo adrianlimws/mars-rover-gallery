@@ -15,6 +15,7 @@
 					></path></svg
 				>
 			</div>
+			<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 			<ul
 				tabindex="0"
 				class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-600 rounded-box w-52"
@@ -45,7 +46,7 @@
 			</li>
 		</ul>
 	</div>
-	<div class="navbar-end">
+	<div class="navbar-end gap-2">
 		<a class="" href="https://github.com/adrianlimws" target="_blank"
 			><svg
 				class="w-6 h-6 text-white hover:text-red-400"
@@ -63,7 +64,7 @@
 		</a>
 		<a class="" href="https://www.linkedin.com/in/adrianlws/" target="_blank"
 			><svg
-				class="w-6 h-6 text-gray-800 dark:text-white"
+				class="w-6 h-6 text-white hover:text-red-400"
 				aria-hidden="true"
 				xmlns="http://www.w3.org/2000/svg"
 				fill="currentColor"

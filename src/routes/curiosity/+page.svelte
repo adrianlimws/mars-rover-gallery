@@ -54,7 +54,32 @@
 			>
 				{photos[0].rover.name}
 			</span>
+
+			<span
+				class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400"
+			>
+				Status:
+				{photos[0].rover.status}
+			</span>
+			<span
+				class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400"
+			>
+				Last Contact:
+				{new Date(photos[0].rover.max_date).toLocaleDateString('en-US', {
+					weekday: 'long',
+					month: 'long',
+					day: 'numeric',
+					year: 'numeric'
+				})}
+			</span>
+			<span
+				class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"
+			>
+				# of Images:
+				{photos[0].rover.total_photos}
+			</span>
 		</div>
+
 		<div class="navbar-center">
 			<div class="relative flex items-center max-w-[11rem]" role="group">
 				<button
@@ -63,7 +88,7 @@
 					data-input-counter-decrement="bedrooms-input"
 					class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
 					on:click={() => {
-						sol = Math.max(1, sol - 1); // Ensure sol is not less than 1
+						sol = Math.max(1, sol - 1); // Ensure sol is not less than 1k
 						solStore.set(sol);
 						fetchData();
 					}}
@@ -138,6 +163,18 @@
 		</div>
 		<div class="navbar-end">
 			<span
+				class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"
+			>
+				Duration:
+				{photos[0].rover.max_sol} SOLs
+			</span>
+			<span
+				class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"
+			>
+				Launched:
+				{photos[0].rover.launch_date}
+			</span>
+			<span
 				class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400"
 			>
 				Landed:
@@ -153,12 +190,12 @@
 		<p class="py-4 text-4xl">Please try another SOL number.</p>
 	</div>
 {:else}
-	<div class="grid place-content-center xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-2">
+	<div class="grid place-content-center xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 gap-4">
 		{#each photos as photo}
-			<figure class="relative max-w-sm cursor-pointer">
+			<figure class="relative max-w-sm cursor-pointer rounded">
 				<a href={photo.img_src}>
 					<img
-						class="rounded-lg w-full"
+						class="rounded-lg w-full hover:scale-110 transition duration-500 cursor-pointer"
 						src={photo.img_src}
 						alt={`Image taken by ${photo.rover.name} on SOL ${photo.sol}`}
 					/>
