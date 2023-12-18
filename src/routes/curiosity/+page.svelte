@@ -193,7 +193,7 @@
 {:else}
 	<div class="grid place-content-center xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 gap-4 m-6">
 		{#each photos as photo}
-			<figure class="relative max-w-sm cursor-pointer rounded">
+			<!-- <figure class="relative max-w-sm cursor-pointer rounded">
 				<a href={photo.img_src}>
 					<img
 						class="rounded-lg w-full hover:scale-105 transition duration-500 cursor-pointer"
@@ -211,7 +211,7 @@
 						>CAM: {photo.camera.name}</span
 					>
 				</figcaption>
-			</figure>
+			</figure> -->
 		{/each}
 	</div>
 {/if}

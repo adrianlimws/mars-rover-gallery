@@ -1,5 +1,5 @@
 <script>
-	import { Lightbox, LightboxGallery, GalleryImage, GalleryThumbnail } from 'svelte-lightbox';
+	import { LightboxGallery, GalleryImage, GalleryThumbnail } from 'svelte-lightbox';
 </script>
 
 <Lightbox description="Simple lightbox">
