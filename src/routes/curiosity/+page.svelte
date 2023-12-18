@@ -48,7 +48,7 @@
 	}
 </script>
 
-<div class="navbar bg-slate-700 text-white">
+<div class="navbar border-t-2 border-b-2 border-slate-700 text-white">
 	<div class="navbar-start">
 		{#if photos.length > 0}
 			<span
@@ -76,12 +76,6 @@
 					year: 'numeric'
 				})}
 			</span>
-			<span
-				class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"
-			>
-				Image Count:
-				{photos[0].rover.total_photos}
-			</span>
 		{/if}
 	</div>
 	<div class="navbar-center">
@@ -98,7 +92,7 @@
 				}}
 			>
 				<svg
-					class="w-4 h-4 text-gray-800 dark:text-white"
+					class="w-5 h-5 text-gray-800 dark:text-white"
 					aria-hidden="true"
 					xmlns="http://www.w3.org/2000/svg"
 					fill="currentColor"
@@ -152,7 +146,7 @@
 				}}
 			>
 				<svg
-					class="w-4 h-4 text-gray-800 dark:text-white"
+					class="w-5 h-5 text-gray-800 dark:text-white"
 					aria-hidden="true"
 					xmlns="http://www.w3.org/2000/svg"
 					fill="currentColor"
@@ -167,6 +161,12 @@
 	</div>
 	<div class="navbar-end">
 		{#if photos.length > 0}
+			<span
+				class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"
+			>
+				Image Count:
+				{photos[0].rover.total_photos}
+			</span>
 			<span
 				class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"
 			>
@@ -189,57 +189,23 @@
 	</div>
 </div>
 
-{#if photos.length === 0}
+{#if photos.length !== 0}
+	<div class="grid xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 gap-4 m-6">
+		{#each photos as photo}
+			<Lightbox
+				description={`Image taken by ${photo.rover.name} on SOL ${photo.sol}, Earth date: ${photo.earth_date}`}
+			>
+				<img
+					class="rounded-lg w-full hover:scale-105 transition duration-500 cursor-pointer"
+					src={photo.img_src}
+					alt={`Image taken by ${photo.rover.name} on SOL ${photo.sol}, Earth date: ${photo.earth_date}`}
+				/>
+			</Lightbox>
+		{/each}
+	</div>
+{:else}
 	<div class="min-h-screen text-center p-6 text-white">
 		<h1 class="text-5xl font-bold">The rover did not take any images during SOL {sol}.</h1>
 		<p class="py-4 text-4xl">Please try another SOL number.</p>
-	</div>
-{:else}
-	<div class="grid xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 gap-4 m-6">
-		{#if photos.length > 0}
-			<LightboxGallery>
-				<svelte:fragment slot="thumbnail">
-					{#each photos as photo}
-						<GalleryThumbnail enableImageExpand="true">
-							<img
-								class="rounded-lg min-w-full"
-								src={photo.img_src}
-								alt={`Image taken by ${photo.rover.name} on SOL ${photo.sol}, Earth date: ${photo.earth_date}`}
-							/>
-						</GalleryThumbnail>
-					{/each}
-				</svelte:fragment>
-
-				{#each photos as photo}
-					<GalleryImage>
-						<img
-							class="min-w-full"
-							src={photo.img_src}
-							alt={`Image taken by ${photo.rover.name} on SOL ${photo.sol}, Earth date: ${photo.earth_date}`}
-						/>
-					</GalleryImage>
-				{/each}
-			</LightboxGallery>
-		{/if}
-
-		<!-- <figure class="relative max-w-sm cursor-pointer rounded">
-				<a href={photo.img_src}>
-					<img
-						class="rounded-lg w-full hover:scale-105 transition duration-500 cursor-pointer"
-						src={photo.img_src}
-						alt={`Image taken by ${photo.rover.name} on SOL ${photo.sol}`}
-					/>
-				</a>
-				<figcaption class="absolute px-2 text-lg text-white bottom-4">
-					<span
-						class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-blue-600"
-						>{photo.earth_date}</span
-					>
-					<span
-						class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-purple-800"
-						>CAM: {photo.camera.name}</span
-					>
-				</figcaption>
-			</figure> -->
 	</div>
 {/if}
