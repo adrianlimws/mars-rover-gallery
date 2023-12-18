@@ -190,12 +190,12 @@
 		<p class="py-4 text-4xl">Please try another SOL number.</p>
 	</div>
 {:else}
-	<div class="grid place-content-center xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 gap-4">
+	<div class="grid place-content-center xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 gap-4 m-6">
 		{#each photos as photo}
 			<figure class="relative max-w-sm cursor-pointer rounded">
 				<a href={photo.img_src}>
 					<img
-						class="rounded-lg w-full hover:scale-110 transition duration-500 cursor-pointer"
+						class="rounded-lg w-full hover:scale-105 transition duration-500 cursor-pointer shadow-md hover:shadow-white"
 						src={photo.img_src}
 						alt={`Image taken by ${photo.rover.name} on SOL ${photo.sol}`}
 					/>
