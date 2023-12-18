@@ -40,22 +40,25 @@
 	function handleInputChange(event) {
 		const inputValue = parseInt(event.target.value, 10);
 		if (!isNaN(inputValue)) {
-			solStore.set(inputValue);
+			solStore.set(Math.max(1, inputValue));
 		}
 	}
 </script>
 
 <div class="navbar bg-slate-700 text-white">
 	<div class="navbar-start">
-		SOL: {sol}
+		You are browsing images from SOL: {sol}.
 	</div>
 	<div class="navbar-center">
-		<div class="inline-flex rounded-md shadow-sm" role="group">
+		<div class="relative flex items-center max-w-[11rem]" role="group">
 			<button
 				type="button"
-				class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border bg-slate-100 border-gray-900 rounded-s-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700"
+				id="decrement-button"
+				data-input-counter-decrement="bedrooms-input"
+				class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
 				on:click={() => {
-					sol--;
+					sol = Math.max(1, sol - 1); // Ensure sol is not less than 1
+					solStore.set(sol);
 					fetchData();
 				}}
 			>
@@ -70,28 +73,49 @@
 						d="M8.766.566A2 2 0 0 0 6.586 1L1 6.586a2 2 0 0 0 0 2.828L6.586 15A2 2 0 0 0 10 13.586V2.414A2 2 0 0 0 8.766.566Z"
 					/>
 				</svg>
-				Previous
 			</button>
-			<button
-				type="button"
-				class="px-4 py-2 text-sm font-medium text-gray-900 bg-white bg-slate-100 border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white cursor-not-allowed"
+			<input
+				type="text"
+				id="sol-input"
+				data-input-counter
+				data-input-counter-min="1"
+				data-input-counter-max="5"
+				aria-describedby="helper-text-explanation"
+				class="bg-gray-50 border-x-0 border-gray-300 h-11 font-medium text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full pb-6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+				bind:value={sol}
+				on:input={handleInputChange}
+				required
+			/>
+			<div
+				class="absolute bottom-1 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse"
 			>
-				SOL
-				<span
-					class="inline-flex items-center justify-center w-4 h-4 ms-2 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full"
+				<svg
+					class="w-2.5 h-2.5 text-gray-800 dark:text-white"
+					aria-hidden="true"
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 21 20"
 				>
-					{sol}
-				</span>
-			</button>
+					<path
+						stroke="currentColor"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M6.487 1.746c0 4.192 3.592 1.66 4.592 5.754 0 .828 1 1.5 2 1.5s2-.672 2-1.5a1.5 1.5 0 0 1 1.5-1.5h1.5m-16.02.471c4.02 2.248 1.776 4.216 4.878 5.645C10.18 13.61 9 19 9 19m9.366-6h-2.287a3 3 0 0 0-3 3v2m6-8a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+					/>
+				</svg>
+				<span>Sol</span>
+			</div>
 			<button
 				type="button"
-				class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent bg-slate-100 border border-gray-900 rounded-e-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700"
+				id="increment-button"
+				data-input-counter-increment="bedrooms-input"
+				class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
 				on:click={() => {
 					sol++;
 					fetchData();
 				}}
 			>
-				Next
 				<svg
 					class="w-4 h-4 text-gray-800 dark:text-white"
 					aria-hidden="true"
@@ -106,51 +130,44 @@
 			</button>
 		</div>
 	</div>
-	<div class="navbar-end">
-		<form>
-			<label for=""> Search by SOL </label>
-			<input
-				type="number"
-				id="quantity-input"
-				data-input-counter
-				aria-describedby="helper-text-explanation"
-				class="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-				bind:value={sol}
-				on:input={handleInputChange}
-				required
-			/>
-		</form>
-	</div>
+	<div class="navbar-end"></div>
 </div>
 
-<div class="grid grid-cols-5 md:grid-cols-4 sm:grid-cols-2 gap-4">
-	{#each photos as photo}
-		<figure class="relative max-w-sm cursor-pointer">
-			<a href={photo.img_src}>
-				<img
-					class="rounded-lg w-full"
-					src={photo.img_src}
-					alt={`Image taken by ${photo.rover.name} on SOL ${photo.sol}`}
-				/>
-			</a>
-			<figcaption class="absolute px-2 text-lg text-white bottom-4">
-				<span
-					class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-blue-600"
-					>{photo.earth_date}</span
-				>
-				<span
-					class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-red-700"
-					>{photo.rover.name}</span
-				>
-				<span
-					class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800"
-					>SOL {photo.sol}</span
-				>
-				<span
-					class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-purple-800"
-					>CAM: {photo.camera.name}</span
-				>
-			</figcaption>
-		</figure>
-	{/each}
-</div>
+{#if photos.length === 0}
+	<div class="min-h-screen text-center p-6 text-white">
+		<h1 class="text-5xl font-bold">The rover did not take any images during SOL {sol}.</h1>
+		<p class="py-4 text-4xl">Please try another SOL number.</p>
+	</div>
+{:else}
+	<div class="grid place-content-center xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-2">
+		{#each photos as photo}
+			<figure class="relative max-w-sm cursor-pointer">
+				<a href={photo.img_src}>
+					<img
+						class="rounded-lg w-full"
+						src={photo.img_src}
+						alt={`Image taken by ${photo.rover.name} on SOL ${photo.sol}`}
+					/>
+				</a>
+				<figcaption class="absolute px-2 text-lg text-white bottom-4">
+					<span
+						class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-blue-600"
+						>{photo.earth_date}</span
+					>
+					<span
+						class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-red-700"
+						>{photo.rover.name}</span
+					>
+					<span
+						class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800"
+						>SOL {photo.sol}</span
+					>
+					<span
+						class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-purple-800"
+						>CAM: {photo.camera.name}</span
+					>
+				</figcaption>
+			</figure>
+		{/each}
+	</div>
+{/if}
