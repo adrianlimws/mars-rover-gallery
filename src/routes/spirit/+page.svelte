@@ -15,7 +15,7 @@
 		try {
 			// console.log('Fetching data for sol:', sol);
 			const response = await fetch(
-				`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${sol}&api_key=Y539x3gNFZbriWjlPKavmFxgZojJYtHxFZcoQ1Ku`
+				`https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?sol=${sol}&api_key=Y539x3gNFZbriWjlPKavmFxgZojJYtHxFZcoQ1Ku`
 			);
 			const responseData = await response.json();
 			// Extract the photos array from the response

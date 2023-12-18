@@ -21,13 +21,13 @@
 				class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-600 rounded-box w-52"
 			>
 				<li>
-					<a class="hover:text-cyan-400" href="/curiosity"> Curiosity </a>
+					<a class="hover:text-red-400" href="/curiosity"> Curiosity </a>
 				</li>
 				<li>
-					<a class="hover:text-cyan-400" href="/opportunity"> Opportunity </a>
+					<a class="hover:text-yellow-400" href="/opportunity"> Opportunity </a>
 				</li>
 				<li>
-					<a class="hover:text-cyan-400" href="/spirit"> Spirit </a>
+					<a class="hover:text-blue-400" href="/spirit"> Spirit </a>
 				</li>
 			</ul>
 		</div>
@@ -36,13 +36,13 @@
 	<div class="navbar-center hidden lg:flex">
 		<ul class="menu menu-horizontal px-1">
 			<li>
-				<a class="hover:text-cyan-400" href="/curiosity"> Curiosity </a>
+				<a class="hover:text-red-400" href="/curiosity"> Curiosity </a>
 			</li>
 			<li>
-				<a class="hover:text-cyan-400" href="/opportunity"> Opportunity </a>
+				<a class="hover:text-yellow-400" href="/opportunity"> Opportunity </a>
 			</li>
 			<li>
-				<a class="hover:text-cyan-400" href="/spirit"> Spirit </a>
+				<a class="hover:text-blue-400" href="/spirit"> Spirit </a>
 			</li>
 		</ul>
 	</div>
