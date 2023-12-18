@@ -52,39 +52,42 @@
 	<div class="navbar-start">
 		{#if photos.length > 0}
 			<span
-				class="bg-purple-100 text-purple-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-purple-700 dark:text-purple-400 border border-purple-400"
+				class=" text-slate-200 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg border border-slate-400 text-center"
 			>
-				{photos[0].rover.name}
+				Rover:
+				<p class="font-semibold">{photos[0].rover.name}</p>
 			</span>
 
 			<span
-				class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-700 dark:text-green-400 border border-green-400"
+				class="text-slate-200 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg border border-slate-400 text-center"
 			>
 				Status:
 				<span class="uppercase">
-					{photos[0].rover.status}
+					<p class="font-semibold">{photos[0].rover.status}</p>
 				</span>
 			</span>
 			<span
-				class="bg-orange-100 text-orange-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-orange-400 border border-orange-400"
+				class="text-slate-200 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg border border-slate-400 text-center"
 			>
 				Last Contact:
-				{new Date(photos[0].rover.max_date).toLocaleDateString('en-US', {
-					weekday: 'long',
-					month: 'long',
-					day: 'numeric',
-					year: 'numeric'
-				})}
+				<p class="font-semibold">
+					{new Date(photos[0].rover.max_date).toLocaleDateString('en-US', {
+						weekday: 'long',
+						month: 'long',
+						day: 'numeric',
+						year: 'numeric'
+					})}
+				</p>
 			</span>
 		{/if}
 	</div>
 	<div class="navbar-center">
-		<div class="relative flex items-center max-w-[11rem]" role="group">
+		<div class="relative flex items-center max-w-[18rem]" role="group">
 			<button
 				type="button"
 				id="decrement-button"
 				data-input-counter-decrement="bedrooms-input"
-				class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
+				class=" dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-slate-600 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
 				on:click={() => {
 					sol = Math.max(1, sol - 1); // Ensure sol is not less than 1k
 					solStore.set(sol);
@@ -92,7 +95,7 @@
 				}}
 			>
 				<svg
-					class="w-5 h-5 text-gray-800 dark:text-white"
+					class="w-5 h-5 text-white dark:text-white"
 					aria-hidden="true"
 					xmlns="http://www.w3.org/2000/svg"
 					fill="currentColor"
@@ -119,7 +122,7 @@
 				class="absolute bottom-1 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse"
 			>
 				<svg
-					class="w-2.5 h-2.5 text-gray-800 dark:text-white"
+					class="w-3.5 h-3.5 text-black dark:text-white"
 					aria-hidden="true"
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
@@ -139,14 +142,14 @@
 				type="button"
 				id="increment-button"
 				data-input-counter-increment="bedrooms-input"
-				class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
+				class=" dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-slate-600 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
 				on:click={() => {
 					sol++;
 					fetchData();
 				}}
 			>
 				<svg
-					class="w-5 h-5 text-gray-800 dark:text-white"
+					class="w-5 h-5 text-white dark:text-white"
 					aria-hidden="true"
 					xmlns="http://www.w3.org/2000/svg"
 					fill="currentColor"
@@ -162,41 +165,55 @@
 	<div class="navbar-end">
 		{#if photos.length > 0}
 			<span
-				class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"
+				class="text-slate-200 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg border border-slate-400 text-center"
 			>
 				Image Count:
-				{photos[0].rover.total_photos}
+				<p class="font-semibold">{photos[0].rover.total_photos}</p>
 			</span>
 			<span
-				class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"
+				class="text-slate-200 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg border border-slate-400 text-center"
 			>
-				Duration:
-				{photos[0].rover.max_sol} SOLs
+				Duration(SOLs):
+				<p class="font-semibold">{photos[0].rover.max_sol}</p>
 			</span>
 			<span
-				class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"
+				class="text-slate-200 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg border border-slate-400 text-center"
 			>
-				Launched:
-				{photos[0].rover.launch_date}
+				Launch Date:
+				<p class="font-semibold">
+					{new Date(photos[0].rover.launch_date).toLocaleDateString('en-US', {
+						weekday: 'long',
+						month: 'long',
+						day: 'numeric',
+						year: 'numeric'
+					})}
+				</p>
 			</span>
 			<span
-				class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"
+				class="text-slate-200 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg border border-slate-400 text-center"
 			>
-				Landed:
-				{photos[0].rover.landing_date}
+				Launch Date:
+				<p class="font-semibold">
+					{new Date(photos[0].rover.landing_date).toLocaleDateString('en-US', {
+						weekday: 'long',
+						month: 'long',
+						day: 'numeric',
+						year: 'numeric'
+					})}
+				</p>
 			</span>
 		{/if}
 	</div>
 </div>
 
 {#if photos.length !== 0}
-	<div class="grid xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 gap-4 m-6">
+	<div class="grid xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 gap-3 m-3">
 		{#each photos as photo}
 			<Lightbox
 				description={`Image taken by ${photo.rover.name} on SOL ${photo.sol}, Earth date: ${photo.earth_date}`}
 			>
 				<img
-					class="rounded-lg w-full hover:scale-105 transition duration-500 cursor-pointer"
+					class="w-full h-auto max-w-xl rounded-lg hover:scale-110 transition duration-300 cursor-pointer"
 					src={photo.img_src}
 					alt={`Image taken by ${photo.rover.name} on SOL ${photo.sol}, Earth date: ${photo.earth_date}`}
 				/>
