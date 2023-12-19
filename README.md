@@ -1,8 +1,8 @@
 ![image](https://github.com/adrianlimws/mars-rover-gallery/assets/64565597/743b0fc5-c028-43e2-a4b1-70986e452e6f)
 
-# Mars Rover Gallery
-
 Images taken by mars rovers since SOL 1.
+
+Built with Sveltekit. Deployed on Netlify.
 
 [Demo site](https://harmonious-sprite-11a504.netlify.app)
 
