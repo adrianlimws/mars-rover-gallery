@@ -1,4 +1,4 @@
-# [[Demo site](https://marsrovergallery.netlify.app/)]([https://harmonious-sprite-11a504.netlify.app](https://marsrovergallery.netlify.app/))
+# [https://marsrovergallery.netlify.app/](https://marsrovergallery.netlify.app/)
 ### Built with Sveltekit. Deployed on Netlify. Using [NASA Open API](https://api.nasa.gov/)
 
 ![image](https://github.com/adrianlimws/mars-rover-gallery/assets/64565597/743b0fc5-c028-43e2-a4b1-70986e452e6f)
