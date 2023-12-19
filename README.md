@@ -1,12 +1,8 @@
 ![image](https://github.com/adrianlimws/mars-rover-gallery/assets/64565597/743b0fc5-c028-43e2-a4b1-70986e452e6f)
 
-Images taken by mars rovers since SOL 1.
-
-Built with Sveltekit. Deployed on Netlify.
-
+Built with Sveltekit. Deployed on Netlify. Using [NASA Open API](https://api.nasa.gov/)
 [Demo site](https://harmonious-sprite-11a504.netlify.app)
 
-![image](https://github.com/adrianlimws/mars-rover-gallery/assets/64565597/0d60ae4b-c632-4326-88b3-734ee3fa9a79)
 
 ![image](https://github.com/adrianlimws/mars-rover-gallery/assets/64565597/7edf2e34-983b-40c5-94d5-c2f98e253ba1)
 
