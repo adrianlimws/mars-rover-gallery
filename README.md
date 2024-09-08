@@ -8,3 +8,6 @@
 ![image](https://github.com/adrianlimws/mars-rover-gallery/assets/64565597/4f1f6785-22ce-46fa-b5f6-e72a1110a322)
 
 
+### Purpose
+
+First attempt at creating a website with Svelte. Thoroughly enjoy it and actually prefer it over React.js :D...
